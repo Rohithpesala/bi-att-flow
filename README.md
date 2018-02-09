@@ -44,7 +44,7 @@ Then to fully train, run:
 ```
 python -m basic.cli --mode train --noload
 ```
-
+checking 
 You can speed up the training process with optimization flags:
 ```
 python -m basic.cli --mode train --noload --len_opt --cluster
