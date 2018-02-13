@@ -16,7 +16,7 @@ for i in range(len(sys.argv)-1):
 	with open("clean.json","w") as vlc_file:
 		vlc_file.write("{\"data\":["+("".join(nf))[:-1]+"]}")
 	
-	jf = pd.read_json('vlc_clean.json')
+	jf = pd.read_json('clean.json')
 	# jf['version'] = 1.0
 	data = []
 	for i,di in enumerate(jf['data']):
@@ -69,14 +69,14 @@ for i in range(len(sys.argv)-1):
 			continue
 		# print(di['answers'])
 		# break
-		print(answers)
+		# print(answers)
 		qas = [{"question": query, "id": query_id, "answers": answers}]
 		para_temp = [{"qas": qas, "context": query_passage}]
 		data_temp = {"paragraphs":para_temp, "title": title}
 		data.append(data_temp)
 		print(i)
-		if i>100:
-			break
+		# if i>100:
+		# 	break
 	nf = {"data": data, "version": 1.0}
 	json.dump(nf, open("processed_"+fname, 'w'))
 
