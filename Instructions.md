@@ -1,8 +1,19 @@
 # Getting BiDAF up for experimentation on Gypsum
 
+0. Clone the repo.
 ```
 git clone https://github.com/Rohithpesala/bi-att-flow.git
 ```
+1. Cut a branch by your name
+```
+git checkout -b <name>
+```
+2. Push it to master.
+```
+git push origin <name>
+```
+3. Now, you are on your own branch. And any work you do will be your own.
+
 
 ## 0. Pre-processing
 First, prepare data. Donwload SQuAD data and GloVe and nltk corpus
@@ -53,14 +64,14 @@ Look at Case 1, step 2
 
 ##### Step 3
 Look at Case 1, step 3
- 
+
 ##### Step 4: Submit the job by running
  ```
 sbatch optimized-single-gpu.sh
 ```
 
 ### Case 3: Multi-GPU - Optimized.
-This will run the experiment on 2 gpus, with optimizations enabled. Note that here we are running the model only from 
+This will run the experiment on 2 gpus, with optimizations enabled. Note that here we are running the model only from
 
 ##### Step 1. Use the file `2-gpu.sh` in the folder slurm/multi-gpu/.
 ```
@@ -78,10 +89,10 @@ cd slurm/multi-gpu
    ```
 
 ### Submitting to and working with Gypsum
-Once you have run your `sbatch` command, your job has been submitted to the gypsum job scheduler. 
-Take note of the job id. 
+Once you have run your `sbatch` command, your job has been submitted to the gypsum job scheduler.
+Take note of the job id.
 
-You can also get the id of the job you just submitted if you run the command 
+You can also get the id of the job you just submitted if you run the command
 ```
 squeue | grep <your user id>
 ```
@@ -90,7 +101,7 @@ You'll see an output like:
 ```
 JOBID	PARTITION	NAME	USER 		ST	  TIME  NODES	NODELIST(REASON)
 3421260 	titanx-sh	bidaf	usaxena	R		0:00	1		 023
-``` 
+```
  > Note: The job ID's are strictly increasing. A job started now would have an ID number higher than a job which was started a second ago.
 
  When you submit your job to Gypsum, you're submitting to a job queue. And your job getting scheduled depends on the load of the cluster at the current time. So it might get queued and you'll see a `PD` written when you do an `squeue` under the column `status`.
@@ -98,14 +109,14 @@ JOBID	PARTITION	NAME	USER 		ST	  TIME  NODES	NODELIST(REASON)
 ```
 JOBID	PARTITION	NAME	USER 		ST	  TIME  NODES	NODELIST(REASON)
 3421160 	titanx-sh	nohup	rishikes	PD		0:00	1		 (PartitionTimeLimit)
-``` 
+```
 
-To cancel the job, you can just use 
+To cancel the job, you can just use
 ```
 scancel <SLURM_JOB_ID>
 ```
 
-You can look at the different partitions by using the `sinfo` command. 
+You can look at the different partitions by using the `sinfo` command.
 
 ```
 PARTITION     AVAIL  TIMELIMIT   NODES     STATE 	NODELIST
@@ -124,11 +135,11 @@ A `long` name as `m40-long` or `titanx-long` signals that all jobs on this parti
 `titanx` and `m40` are the type of GPU's, with `m40`'s being better (faster, more memory), but are harder to get (#thatslife)
 
 #### Setting the gpu type
-At peak times it may be possible that some partitions are overloaded and all jobs are getting queued. Here you can try different partitions. At the top of your slurm file you'll see the line 
+At peak times it may be possible that some partitions are overloaded and all jobs are getting queued. Here you can try different partitions. At the top of your slurm file you'll see the line
 
 ```
 #SBATCH --partition=m40-short
-``` 
+```
 Different options are
 - `m40-short`
 - `m40-long`
@@ -136,17 +147,17 @@ Different options are
 - `titanx-long`
 
 
-#### Output Files 
+#### Output Files
 If you look at any of the slurm files, there is a line near the top of the file :
 ```
 #SBATCH --output=bidaf-m40s-%A.out
 #SBATCH --error=bidaf-m40s-%A.err
 ```
-The `%A` is the job id. So if the job id is 3421260 the files produced by the job will be of the form `bidaf-m40s-3421260.out` and `bidaf-m40s-3421260.err`. 
+The `%A` is the job id. So if the job id is 3421260 the files produced by the job will be of the form `bidaf-m40s-3421260.out` and `bidaf-m40s-3421260.err`.
 
-The `*.out` files usually have the result of the output stream, and the `*.err` files usually have the error stream. 
+The `*.out` files usually have the result of the output stream, and the `*.err` files usually have the error stream.
 
 ### TODO:
-- [ ] Writing your own slurm file 
+- [ ] Writing your own slurm file
 - [ ] Working on the GPU directly
-- [ ] Working with saved models - uploading them to a common place 
+- [ ] Working with saved models - uploading them to a common place
