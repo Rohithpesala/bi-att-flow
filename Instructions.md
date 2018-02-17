@@ -14,7 +14,7 @@ git push origin <name>
 ```
 3. Now, you are on your own branch. And any work you do will be your own.
 
-
+#### [Intro to git](http://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/commandlinegit.html)
 ## 0. Pre-processing
 First, prepare data. Donwload SQuAD data and GloVe and nltk corpus
 (~850 MB, this will download files to `$HOME/data`):
