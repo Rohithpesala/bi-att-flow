@@ -8,7 +8,8 @@ flags = tf.app.flags
 
 # Names and directories
 flags.DEFINE_string("model_name", "basic", "Model name [basic]")
-flags.DEFINE_string("data_dir", "data/squad", "Data dir [data/squad]")
+flags.DEFINE_string("data_dir", "data/squad/", "Data dir [data/squad]")
+flags.DEFINE_string("joint_data_dir", "data/newsqa/", "Data dir [data/squad]")
 flags.DEFINE_string("run_id", "0", "Run ID [0]")
 flags.DEFINE_string("out_base_dir", "out", "out base dir [out]")
 flags.DEFINE_string("forward_name", "single", "Forward name [single]")
@@ -16,6 +17,7 @@ flags.DEFINE_string("answer_path", "", "Answer path []")
 flags.DEFINE_string("eval_path", "", "Eval path []")
 flags.DEFINE_string("load_path", "", "Load path []")
 flags.DEFINE_string("shared_path", "", "Shared path []")
+flags.DEFINE_string("joint_ratio", 0.01, "Joint Training Ratio - of target domain")
 
 # Device placement
 flags.DEFINE_string("device", "/cpu:0", "default device for summing gradients. [/cpu:0]")

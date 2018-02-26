@@ -115,7 +115,7 @@ class DataSet(object):
         batch_size_per_step = batch_size * num_batches_per_step
         batches = self.get_batches(batch_size_per_step, num_batches=num_steps, shuffle=shuffle, cluster=cluster)
         multi_batches = (tuple(zip(grouper(idxs, batch_size, shorten=True, num_groups=num_batches_per_step),
-                         data_set.divide(num_batches_per_step))) for idxs, data_set in batches)
+                                   data_set.divide(num_batches_per_step))) for idxs, data_set in batches)
         return multi_batches
 
     def get_empty(self):
@@ -163,6 +163,50 @@ def read_data(config, data_type, ref, data_filter=None):
     with open(shared_path, 'r') as fh:
         shared = json.load(fh)
 
+    if (config.joint_ratio != 0.0):
+        # load joint training paths as well
+        joint_data_path = os.path.join(config.joint_data_dir, "data_{}.json".format(data_type))
+        joint_shared_path = os.path.join(config.joint_data_dir, "shared_{}.json".format(data_type))
+        with open(joint_data_path, 'r') as fh:
+            joint_data = json.load(fh)
+
+            num_joint_examples = len(next(iter(joint_data.values())))
+            joint_ratio_size = int(config.joint_ratio * num_joint_examples)
+
+            for k, v in joint_data.items():
+                data[k].extend(v[:joint_ratio_size])
+
+        with open(joint_shared_path, 'r') as fh:
+            joint_shared = json.load(fh)
+            for k, v in joint_shared.items():
+                print(type(v))
+                if (type(v) is list):
+                    shared[k].extend(v)
+                if k == 'word_counter' or k == 'char_counter':
+                    for _k, _v in v.items():
+                        if (_k in shared[k].keys()):
+                            shared[k][_k] += _v
+                        else:
+                            shared[k][_k] = _v
+
+                if k == 'lower_word2vec' or k == 'word2vec':
+                    for _k, _v in v.items():
+                        if (_k not in shared[k].keys()):
+                            shared[k][_k] = _v
+                            # if (type(v) is dict):
+                            #     print(k, len(v.keys()))
+                            #     joint_sub_keys = v.keys()
+                            #     print("len joint sub keys: ", len(joint_sub_keys))
+                            #     shared_sub_keys = shared[k].keys()
+                            #     print("A: ", len(set(joint_sub_keys)), len(set(joint_sub_keys).intersection(shared_sub_keys)))
+                            #     print("B: ", len(set(shared_sub_keys)), len(set(shared_sub_keys).intersection(joint_sub_keys)))
+                            #
+                            #     if (k == 'lower_word2vec'):
+                            #         print(v['berating'] == shared['lower_word2vec']['berating'])
+
+    # print(len(next(iter(shared.values()))), shared.keys(), len(shared['x']))
+
+
     num_examples = len(next(iter(data.values())))
     if data_filter is None:
         valid_idxs = range(num_examples)
@@ -185,7 +229,8 @@ def read_data(config, data_type, ref, data_filter=None):
         if config.finetune:
             shared['word2idx'] = {word: idx + 2 for idx, word in
                                   enumerate(word for word, count in word_counter.items()
-                                            if count > config.word_count_th or (config.known_if_glove and word in word2vec_dict))}
+                                            if count > config.word_count_th or (
+                                            config.known_if_glove and word in word2vec_dict))}
         else:
             assert config.known_if_glove
             assert config.use_glove_for_unk
@@ -210,7 +255,8 @@ def read_data(config, data_type, ref, data_filter=None):
     if config.use_glove_for_unk:
         # create new word2idx and word2vec
         word2vec_dict = shared['lower_word2vec'] if config.lower_word else shared['word2vec']
-        new_word2idx_dict = {word: idx for idx, word in enumerate(word for word in word2vec_dict.keys() if word not in shared['word2idx'])}
+        new_word2idx_dict = {word: idx for idx, word in
+                             enumerate(word for word in word2vec_dict.keys() if word not in shared['word2idx'])}
         shared['new_word2idx'] = new_word2idx_dict
         offset = len(shared['word2idx'])
         word2vec_dict = shared['lower_word2vec'] if config.lower_word else shared['word2vec']
@@ -220,7 +266,10 @@ def read_data(config, data_type, ref, data_filter=None):
         new_emb_mat = np.array([idx2vec_dict[idx] for idx in range(len(idx2vec_dict))], dtype='float32')
         shared['new_emb_mat'] = new_emb_mat
 
+    # print("Just before getting into dataset...")
+    # print(data.keys(), shared.keys())
     data_set = DataSet(data, data_type, shared=shared, valid_idxs=valid_idxs)
+    # print("--------------------------------------")
     return data_set
 
 
@@ -248,12 +297,12 @@ def get_squad_data_filter(config):
 
         if config.data_filter == 'max':
             for start, stop in y:
-                    if stop[0] >= config.num_sents_th:
-                        return False
-                    if start[0] != stop[0]:
-                        return False
-                    if stop[1] >= config.sent_size_th:
-                        return False
+                if stop[0] >= config.num_sents_th:
+                    return False
+                if start[0] != stop[0]:
+                    return False
+                if stop[1] >= config.sent_size_th:
+                    return False
         elif config.data_filter == 'valid':
             if len(xi) > config.num_sents_th:
                 return False
@@ -274,6 +323,7 @@ def get_squad_data_filter(config):
             raise Exception()
 
         return True
+
     return data_filter
 
 
