@@ -20,12 +20,19 @@ def get_2d_spans(text, tokenss):
 
 def get_word_span(context, wordss, start, stop):
     spanss = get_2d_spans(context, wordss)
+    # print("\n---SPANSS: ", spanss)
     idxs = []
     for sent_idx, spans in enumerate(spanss):
         for word_idx, span in enumerate(spans):
             if not (stop <= span[0] or start >= span[1]):
+                # print("\n---Start, Stop ", start, stop)
+                # print("\n---Span: ", span)
+                # print("\n---IDX being appended: ", sent_idx, word_idx)
                 idxs.append((sent_idx, word_idx))
 
+    # print("\n---IDX's: ", idxs)
+    if (len(idxs) <= 0):
+        return -1, -1
     assert len(idxs) > 0, "{} {} {} {}".format(context, spanss, start, stop)
     return idxs[0], (idxs[-1][0], idxs[-1][1] + 1)
 
