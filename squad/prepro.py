@@ -26,6 +26,7 @@ def get_args():
     parser.add_argument('-t', "--target_dir", default=target_dir)
     parser.add_argument('-d', "--debug", action='store_true')
     parser.add_argument("--train_ratio", default=0.9, type=int)
+    parser.add_argument("--debug_ratio", default=0.05, type=int)
     parser.add_argument("--glove_corpus", default="6B")
     parser.add_argument("--glove_dir", default=glove_dir)
     parser.add_argument("--glove_vec_size", default=100, type=int)
@@ -68,6 +69,10 @@ def prepro(args):
     elif args.mode == 'single':
         assert len(args.single_path) > 0
         prepro_each(args, "NULL", out_name="single", in_path=args.single_path)
+    elif args.mode == 'debug':  # 20 train, 2 dev, 2 test with default setting
+        prepro_each(args, 'train', 0.0, args.train_ratio * args.debug_ratio, out_name='train')
+        prepro_each(args, 'train', args.train_ratio * args.debug_ratio, args.debug_ratio, out_name='dev')
+        prepro_each(args, 'dev', 0.0, args.train_ratio * args.debug_ratio, out_name='test')
     else:
         prepro_each(args, 'train', 0.0, args.train_ratio, out_name='train')
         prepro_each(args, 'train', args.train_ratio, 1.0, out_name='dev')
@@ -132,6 +137,7 @@ def prepro_each(args, data_type, start_ratio=0.0, stop_ratio=1.0, out_name="defa
     word_counter, char_counter, lower_word_counter = Counter(), Counter(), Counter()
     start_ai = int(round(len(source_data['data']) * start_ratio))
     stop_ai = int(round(len(source_data['data']) * stop_ratio))
+    print("START: {} STOP: {}".format(start_ai, stop_ai))
     for ai, article in enumerate(tqdm(source_data['data'][start_ai:stop_ai])):
         xp, cxp = [], []
         pp = []
@@ -139,7 +145,7 @@ def prepro_each(args, data_type, start_ratio=0.0, stop_ratio=1.0, out_name="defa
         cx.append(cxp)
         p.append(pp)
         for pi, para in enumerate(article['paragraphs']):
-            # wordss
+            # words
             context = para['context']
             context = context.replace("''", '" ')
             context = context.replace("``", '" ')
