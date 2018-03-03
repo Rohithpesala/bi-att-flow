@@ -28,7 +28,7 @@ def get_args():
     parser.add_argument("--train_ratio", default=0.9, type=int)
     parser.add_argument("--glove_corpus", default="6B")
     parser.add_argument("--glove_dir", default=glove_dir)
-    parser.add_argument("--debug_ratio", default=0.05, type=int)
+    parser.add_argument("--debug_ratio", default=0.05, type=float)
     parser.add_argument("--glove_vec_size", default=100, type=int)
     parser.add_argument("--mode", default="full", type=str)
     parser.add_argument("--single_path", default="", type=str)
