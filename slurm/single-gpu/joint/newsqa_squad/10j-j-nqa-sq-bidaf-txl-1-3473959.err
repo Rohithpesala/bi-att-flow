@@ -1,0 +1,49 @@
+Exception:
+Traceback (most recent call last):
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/basecommand.py", line 215, in main
+    status = self.run(options, args)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/commands/uninstall.py", line 76, in run
+    requirement_set.uninstall(auto_confirm=options.yes)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/req/req_set.py", line 346, in uninstall
+    req.uninstall(auto_confirm=auto_confirm)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/req/req_install.py", line 754, in uninstall
+    paths_to_remove.remove(auto_confirm)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/req/req_uninstall.py", line 103, in remove
+    response = ask('Proceed (y/n)? ', ('y', 'n'))
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/utils/__init__.py", line 158, in ask
+    response = input(message)
+EOFError: EOF when reading a line
+Exception:
+Traceback (most recent call last):
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/shutil.py", line 538, in move
+    os.rename(src, real_dst)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/usaxena/.local/lib/python3.5/site-packages/protobuf-3.0.0.dist-info/RECORD.pip' -> '/home/usaxena/.local/lib/python3.5/site-packages/protobuf-3.0.0.dist-info/RECORD'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/basecommand.py", line 215, in main
+    status = self.run(options, args)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/commands/install.py", line 342, in run
+    prefix=options.prefix_path,
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/req/req_set.py", line 784, in install
+    **kwargs
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/req/req_install.py", line 851, in install
+    self.move_wheel_files(self.source_dir, root=root, prefix=prefix)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/req/req_install.py", line 1064, in move_wheel_files
+    isolated=self.isolated,
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/wheel.py", line 527, in move_wheel_files
+    shutil.move(temp_record, record)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/shutil.py", line 552, in move
+    copy_function(src, real_dst)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/shutil.py", line 251, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/shutil.py", line 114, in copyfile
+    with open(src, 'rb') as fsrc:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/usaxena/.local/lib/python3.5/site-packages/protobuf-3.0.0.dist-info/RECORD.pip'
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally
+/cm/local/apps/slurm/var/spool/job3473959/slurm_script: line 38:  6972 Bus error               python -m basic.cli --mode train --noload --out_base_dir "out/nqa-sq-10/" --joint_ratio 0.1 --batch_size 60 --num_steps 20000 -device /gpu:0 --device_type gpu --num_gpus 1

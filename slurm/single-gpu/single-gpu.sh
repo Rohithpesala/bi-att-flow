@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-#SBATCH --job-name=1-gpu-bidaf-tf
-#SBATCH --partition=titanx-short
-#SBATCH --output=bidaf-m40s-1-%A.out
-#SBATCH --error=bidaf-m40s-1-%A.err
+#SBATCH --job-name=1-gpu-newsqa-bidaf-tf
+#SBATCH --partition=titanx-long
+#SBATCH --output=newsqa-test-bidaf-txl-1-%A.out
+#SBATCH --error=newsqa-test-bidaf-txl-1-%A.err
 #SBATCH --gres=gpu:1
 
 # Log what we're running and where.
@@ -27,7 +27,7 @@ pip install --user --ignore-installed --upgrade https://storage.googleapis.com/t
 
 
 ## Change this line so that it points to your bidaf gitbuh folder
-cd /home/usaxena/work/s18/696/bidaf-tf/bi-att-flow
+cd /home/usaxena/work/s18/696/bidaf/
 
 ## Change lines below if you want to run it differently
 
@@ -35,7 +35,7 @@ cd /home/usaxena/work/s18/696/bidaf-tf/bi-att-flow
 python -m basic.cli --mode train --noload --debug  --batch_size 60 --device /gpu:0 --device_type gpu --num_gpus 1
 
 ## Train Full dataset
-# python -m basic.cli --mode train --noload --batch_size 60 --num_steps 10000 -device /gpu:0 --device_type gpu --num_gpus 1
+#python -m basic.cli --mode train --noload --data_dir "data/newsqa/" --out_base_dir "out/newsqa/" --batch_size 60 --num_steps 20000 -device /gpu:0 --device_type gpu --num_gpus 1
 
 ## Testing on dataset
-# python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 1
+python -m basic.cli --out_base_dir "out/newsqa/" --device /gpu:0 --device_type gpu --num_gpus 1

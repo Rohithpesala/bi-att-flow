@@ -165,13 +165,15 @@ def read_data(config, data_type, ref, data_filter=None):
 
     if (config.joint_ratio != 0.0):
         # load joint training paths as well
+        print("Load joint training data: ", config.joint_data_dir)
         joint_data_path = os.path.join(config.joint_data_dir, "data_{}.json".format(data_type))
         joint_shared_path = os.path.join(config.joint_data_dir, "shared_{}.json".format(data_type))
         with open(joint_data_path, 'r') as fh:
             joint_data = json.load(fh)
 
             num_joint_examples = len(next(iter(joint_data.values())))
-            joint_ratio_size = int(config.joint_ratio * num_joint_examples)
+            joint_ratio_size = int(round(float(config.joint_ratio) * num_joint_examples))
+            print(joint_ratio_size)
 
             for k, v in joint_data.items():
                 data[k].extend(v[:joint_ratio_size])

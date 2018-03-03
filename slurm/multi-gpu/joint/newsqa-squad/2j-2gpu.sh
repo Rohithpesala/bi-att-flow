@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-#SBATCH --job-name=multi-opt-gpu-newsqa-bidaf-tf
+#SBATCH --job-name=2j-multi-opt-gpu-newsqa-bidaf-tf
 #SBATCH --partition=m40-long
-#SBATCH --output=2-gpu-newsqa-bidaf-m40l-%A.out
-#SBATCH --error=2-gpu-newsqa-bidaf-m40l-%A.err
+#SBATCH --output=2j-2-gpu-newsqa-bidaf-m40l-%A.out
+#SBATCH --error=2j-2-gpu-newsqa-bidaf-m40l-%A.err
 #SBATCH --mem=60000
 #SBATCH --gres=gpu:2
 
@@ -35,7 +35,7 @@ cd /home/usaxena/work/s18/696/bidaf
 #python -m basic.cli --mode train --noload --debug  --batch_size 30 --device /gpu:0 --device_type gpu --num_gpus 2 --len_opt --cluster
 
 ## Train Full dataset
-python -m basic.cli --mode train --noload --batch_size 30 --out_base_dir "out/basic_newsqa/" --num_steps 10000 -device /gpu:0 --device_type gpu --num_gpus 2 --len_opt --cluster
+python -m basic.cli --mode train --noload --batch_size 30 --out_base_dir "out/multi-nqa-sq-2/" --joint_ratio 0.02 --num_steps 10000 -device /gpu:0 --device_type gpu --num_gpus 2 --len_opt --cluster
 
 ## Testing on dataset
 # python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 2 --len_opt --cluster
