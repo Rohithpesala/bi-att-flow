@@ -161,3 +161,38 @@ The `*.out` files usually have the result of the output stream, and the `*.err` 
 - [ ] Writing your own slurm file
 - [ ] Working on the GPU directly
 - [ ] Working with saved models - uploading them to a common place
+
+
+#### Update: 2nd March
+- To get lastest changes from master, commit everything on your own branch and then:
+```
+git checkout master
+```
+
+```
+git pull
+```
+
+```
+git checkout udit
+```
+
+```
+git rebase master
+```
+
+Now, the new running commands become:
+
+1. Preprocessing:
+
+```
+python -m squad.prepro --mode debug --debug_ratio 0.01 --target_dir data/squad_debug --source_dir ~/Data/squad
+```
+This saves the preprocessed data into the directory data/squad_debug
+
+2. Training:
+
+```
+python -m basic.cli --mode train --noload --data_dir data/squad_debug
+```
+where we use the `data_dir` flag to point it to the new directory
