@@ -1,0 +1,75 @@
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 0 with properties: 
+name: Tesla M40 24GB
+major: 5 minor: 2 memoryClockRate (GHz) 1.112
+pciBusID 0000:81:00.0
+Total memory: 22.43GiB
+Free memory: 22.32GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x2c6f3b30
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 1 with properties: 
+name: Tesla M40 24GB
+major: 5 minor: 2 memoryClockRate (GHz) 1.112
+pciBusID 0000:82:00.0
+Total memory: 22.43GiB
+Free memory: 22.32GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:972] DMA: 0 1 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 1:   Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla M40 24GB, pci bus id: 0000:81:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:1) -> (device: 1, name: Tesla M40 24GB, pci bus id: 0000:82:00.0)
+  0%|          | 0/2 [00:00<?, ?it/s]I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 71899 get requests, put_count=29552 evicted_count=1000 eviction_rate=0.0338387 and unsatisfied allocation rate=0.604278
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:257] Raising pool_size_limit_ from 100 to 110
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 4328 get requests, put_count=9333 evicted_count=5000 eviction_rate=0.535733 and unsatisfied allocation rate=0.00207948
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:257] Raising pool_size_limit_ from 160 to 176
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 10698 get requests, put_count=20710 evicted_count=10000 eviction_rate=0.482859 and unsatisfied allocation rate=0.000373902
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 21005 get requests, put_count=41016 evicted_count=20000 eviction_rate=0.487615 and unsatisfied allocation rate=0.000238039
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 30874 get requests, put_count=60872 evicted_count=30000 eviction_rate=0.492837 and unsatisfied allocation rate=0.000583015
+
+  0%|          | 0/2 [00:00<?, ?it/s][A
+ 50%|█████     | 1/2 [00:01<00:01,  1.88s/it][A
+100%|██████████| 2/2 [00:03<00:00,  1.82s/it][A
+[A
+  0%|          | 0/2 [00:00<?, ?it/s][A
+ 50%|█████     | 1/2 [00:00<00:00,  1.02it/s][A
+100%|██████████| 2/2 [00:01<00:00,  1.18it/s][A
+[A 50%|█████     | 1/2 [00:19<00:19, 19.52s/it]I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 6187 get requests, put_count=11208 evicted_count=5000 eviction_rate=0.44611 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 15941 get requests, put_count=30961 evicted_count=15000 eviction_rate=0.48448 and unsatisfied allocation rate=6.27313e-05
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 27293 get requests, put_count=52313 evicted_count=25000 eviction_rate=0.477893 and unsatisfied allocation rate=3.66394e-05
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 37859 get requests, put_count=72878 evicted_count=35000 eviction_rate=0.480255 and unsatisfied allocation rate=5.28276e-05
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 48143 get requests, put_count=93161 evicted_count=45000 eviction_rate=0.483035 and unsatisfied allocation rate=6.23144e-05
+
+  0%|          | 0/2 [00:00<?, ?it/s][A
+ 50%|█████     | 1/2 [00:01<00:01,  1.36s/it][A
+100%|██████████| 2/2 [00:02<00:00,  1.44s/it][A
+[A
+  0%|          | 0/2 [00:00<?, ?it/s][A
+ 50%|█████     | 1/2 [00:00<00:00,  1.10it/s][A
+100%|██████████| 2/2 [00:01<00:00,  1.29it/s][A
+[A100%|██████████| 2/2 [00:30<00:00, 17.10s/it]
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally
+Traceback (most recent call last):
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/runpy.py", line 184, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/lpal/bi-att-flow/basic/cli.py", line 109, in <module>
+    tf.app.run()
+  File "/home/lpal/.local/lib/python3.5/site-packages/tensorflow/python/platform/app.py", line 30, in run
+    sys.exit(main(sys.argv[:1] + flags_passthrough))
+  File "/home/lpal/bi-att-flow/basic/cli.py", line 106, in main
+    m(config)
+  File "/home/lpal/bi-att-flow/basic/main.py", line 25, in main
+    _test(config)
+  File "/home/lpal/bi-att-flow/basic/main.py", line 131, in _test
+    test_data = read_data(config, 'test', True)
+  File "/home/lpal/bi-att-flow/basic/read_data.py", line 206, in read_data
+    new_shared = json.load(open(shared_path, 'r'))
+FileNotFoundError: [Errno 2] No such file or directory: 'out/basic/00/shared.json'

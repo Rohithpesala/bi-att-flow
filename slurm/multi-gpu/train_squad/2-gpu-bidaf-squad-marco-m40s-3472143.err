@@ -1,0 +1,23 @@
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally
+Traceback (most recent call last):
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/runpy.py", line 184, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/lpal/bi-att-flow/basic/cli.py", line 109, in <module>
+    tf.app.run()
+  File "/home/lpal/.local/lib/python3.5/site-packages/tensorflow/python/platform/app.py", line 30, in run
+    sys.exit(main(sys.argv[:1] + flags_passthrough))
+  File "/home/lpal/bi-att-flow/basic/cli.py", line 106, in main
+    m(config)
+  File "/home/lpal/bi-att-flow/basic/main.py", line 25, in main
+    _test(config)
+  File "/home/lpal/bi-att-flow/basic/main.py", line 131, in _test
+    test_data = read_data(config, 'test', True)
+  File "/home/lpal/bi-att-flow/basic/read_data.py", line 206, in read_data
+    new_shared = json.load(open(shared_path, 'r'))
+FileNotFoundError: [Errno 2] No such file or directory: 'out/basic/00/shared.json'

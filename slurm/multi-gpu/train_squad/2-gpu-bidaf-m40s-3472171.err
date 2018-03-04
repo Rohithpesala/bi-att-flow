@@ -1,0 +1,79 @@
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 0 with properties: 
+name: Tesla M40 24GB
+major: 5 minor: 2 memoryClockRate (GHz) 1.112
+pciBusID 0000:81:00.0
+Total memory: 22.43GiB
+Free memory: 22.32GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x2c6f3140
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 1 with properties: 
+name: Tesla M40 24GB
+major: 5 minor: 2 memoryClockRate (GHz) 1.112
+pciBusID 0000:82:00.0
+Total memory: 22.43GiB
+Free memory: 22.32GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:972] DMA: 0 1 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 1:   Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla M40 24GB, pci bus id: 0000:81:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:1) -> (device: 1, name: Tesla M40 24GB, pci bus id: 0000:82:00.0)
+  0%|          | 0/2 [00:00<?, ?it/s]I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 74015 get requests, put_count=31703 evicted_count=1000 eviction_rate=0.0315428 and unsatisfied allocation rate=0.58653
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:257] Raising pool_size_limit_ from 100 to 110
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 3482 get requests, put_count=6498 evicted_count=3000 eviction_rate=0.461681 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 8599 get requests, put_count=16616 evicted_count=8000 eviction_rate=0.481464 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 18734 get requests, put_count=36748 evicted_count=18000 eviction_rate=0.489823 and unsatisfied allocation rate=0.000160137
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 29158 get requests, put_count=57166 evicted_count=28000 eviction_rate=0.489802 and unsatisfied allocation rate=0.000308663
+
+  0%|          | 0/2 [00:00<?, ?it/s][A
+ 50%|█████     | 1/2 [00:01<00:01,  1.93s/it][A
+100%|██████████| 2/2 [00:03<00:00,  1.84s/it][A
+[A
+  0%|          | 0/2 [00:00<?, ?it/s][A
+ 50%|█████     | 1/2 [00:00<00:00,  1.00it/s][A
+100%|██████████| 2/2 [00:01<00:00,  1.16it/s][A
+[A 50%|█████     | 1/2 [00:21<00:21, 21.17s/it]I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 6152 get requests, put_count=11175 evicted_count=5000 eviction_rate=0.447427 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 15755 get requests, put_count=30777 evicted_count=15000 eviction_rate=0.487377 and unsatisfied allocation rate=6.34719e-05
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 27924 get requests, put_count=52946 evicted_count=25000 eviction_rate=0.472179 and unsatisfied allocation rate=3.58115e-05
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 37832 get requests, put_count=72854 evicted_count=35000 eviction_rate=0.480413 and unsatisfied allocation rate=2.64326e-05
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 48505 get requests, put_count=93527 evicted_count=45000 eviction_rate=0.481144 and unsatisfied allocation rate=2.06164e-05
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 58267 get requests, put_count=113288 evicted_count=55000 eviction_rate=0.485488 and unsatisfied allocation rate=3.43247e-05
+
+  0%|          | 0/2 [00:00<?, ?it/s][A
+ 50%|█████     | 1/2 [00:01<00:01,  1.46s/it][A
+100%|██████████| 2/2 [00:03<00:00,  1.53s/it][A
+[A
+  0%|          | 0/2 [00:00<?, ?it/s][A
+ 50%|█████     | 1/2 [00:00<00:00,  1.03it/s][A
+100%|██████████| 2/2 [00:01<00:00,  1.20it/s][A
+[A100%|██████████| 2/2 [00:33<00:00, 18.46s/it]
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 0 with properties: 
+name: Tesla M40 24GB
+major: 5 minor: 2 memoryClockRate (GHz) 1.112
+pciBusID 0000:81:00.0
+Total memory: 22.43GiB
+Free memory: 22.32GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0xa00a6e0
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 1 with properties: 
+name: Tesla M40 24GB
+major: 5 minor: 2 memoryClockRate (GHz) 1.112
+pciBusID 0000:82:00.0
+Total memory: 22.43GiB
+Free memory: 22.32GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:972] DMA: 0 1 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 1:   Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla M40 24GB, pci bus id: 0000:81:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:1) -> (device: 1, name: Tesla M40 24GB, pci bus id: 0000:82:00.0)
+  0%|          | 0/44 [00:00<?, ?it/s]  2%|▏         | 1/44 [00:12<09:14, 12.90s/it]I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 307848 get requests, put_count=307626 evicted_count=1000 eviction_rate=0.0032507 and unsatisfied allocation rate=0.00429433
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:257] Raising pool_size_limit_ from 100 to 110
+  5%|▍         | 2/44 [00:19<07:48, 11.15s/it]  7%|▋         | 3/44 [00:29<07:12, 10.54s/it]  9%|▉         | 4/44 [00:38<06:49, 10.23s/it] 11%|█▏        | 5/44 [00:44<05:45,  8.86s/it] 14%|█▎        | 6/44 [00:52<05:24,  8.54s/it] 16%|█▌        | 7/44 [00:59<05:06,  8.29s/it] 18%|█▊        | 8/44 [01:07<04:50,  8.07s/it] 20%|██        | 9/44 [01:15<04:45,  8.15s/it] 23%|██▎       | 10/44 [01:24<04:41,  8.29s/it] 25%|██▌       | 11/44 [01:33<04:43,  8.60s/it] 27%|██▋       | 12/44 [01:40<04:19,  8.12s/it] 30%|██▉       | 13/44 [01:48<04:07,  7.99s/it] 32%|███▏      | 14/44 [01:56<03:58,  7.94s/it] 34%|███▍      | 15/44 [02:03<03:43,  7.71s/it] 36%|███▋      | 16/44 [02:08<03:18,  7.10s/it] 39%|███▊      | 17/44 [02:16<03:12,  7.12s/it] 41%|████      | 18/44 [02:21<02:54,  6.72s/it] 43%|████▎     | 19/44 [02:32<03:16,  7.86s/it] 45%|████▌     | 20/44 [02:38<02:57,  7.38s/it] 48%|████▊     | 21/44 [02:44<02:38,  6.91s/it] 50%|█████     | 22/44 [02:55<02:57,  8.05s/it] 52%|█████▏    | 23/44 [03:03<02:48,  8.04s/it] 55%|█████▍    | 24/44 [03:09<02:31,  7.55s/it] 57%|█████▋    | 25/44 [03:17<02:22,  7.52s/it] 59%|█████▉    | 26/44 [03:25<02:20,  7.83s/it] 61%|██████▏   | 27/44 [03:35<02:22,  8.37s/it]I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 2877048 get requests, put_count=2877062 evicted_count=5000 eviction_rate=0.00173788 and unsatisfied allocation rate=0.00173789
+ 64%|██████▎   | 28/44 [03:42<02:07,  7.99s/it] 66%|██████▌   | 29/44 [03:49<01:57,  7.81s/it] 68%|██████▊   | 30/44 [03:57<01:49,  7.86s/it] 70%|███████   | 31/44 [04:04<01:39,  7.63s/it] 73%|███████▎  | 32/44 [04:14<01:39,  8.28s/it] 75%|███████▌  | 33/44 [04:22<01:28,  8.06s/it] 77%|███████▋  | 34/44 [04:29<01:17,  7.76s/it] 80%|███████▉  | 35/44 [04:37<01:11,  7.97s/it] 82%|████████▏ | 36/44 [04:45<01:04,  8.00s/it] 84%|████████▍ | 37/44 [04:53<00:55,  7.92s/it] 86%|████████▋ | 38/44 [05:01<00:48,  8.10s/it] 89%|████████▊ | 39/44 [05:11<00:43,  8.64s/it] 91%|█████████ | 40/44 [05:19<00:33,  8.35s/it] 93%|█████████▎| 41/44 [05:28<00:25,  8.64s/it] 95%|█████████▌| 42/44 [05:35<00:16,  8.15s/it] 98%|█████████▊| 43/44 [05:43<00:07,  7.94s/it]100%|██████████| 44/44 [05:47<00:00,  6.67s/it]
