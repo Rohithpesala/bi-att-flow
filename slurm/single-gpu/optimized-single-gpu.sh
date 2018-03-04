@@ -2,7 +2,7 @@
 #
 #SBATCH --mem=20000
 #SBATCH --job-name=1-gpu-bidaf-tf
-#SBATCH --partition=m40-short
+#SBATCH --partition=m40-long
 #SBATCH --output=bidaf-m40s-1-%A.out
 #SBATCH --error=bidaf-m40s-1-%A.err
 #SBATCH --gres=gpu:1
@@ -35,11 +35,11 @@ cd ../..
 ## Change lines below if you want to run it differently
 
 ## Debugging a small model - use this to test if any changes in your code 
-python -m basic.cli --mode train --noload --debug  --batch_size 60 --device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster --data_dir "data/marco"
+# python -m basic.cli --mode train --noload --debug  --batch_size 60 --device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster --data_dir "data/marco"
 
 ## Train Full dataset
-#python -m basic.cli --mode train --noload --batch_size 60 --num_steps 30000 -device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster #--data_dir "data/marco"
+#python -m basic.cli --mode train --noload --batch_size 60 --num_steps 30000 -device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster --data_dir "data/marco"
 
 ## Testing on dataset
-python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster
+python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster #--data_dir "data/marco"
 
