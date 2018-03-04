@@ -27,7 +27,8 @@ pip install --user --ignore-installed --upgrade https://storage.googleapis.com/t
 
 
 ## Change this line so that it points to your bidaf gitbuh folder
-cd /home/usaxena/work/s18/696/bidaf-tf/bi-att-flow
+#cd /home/usaxena/work/s18/696/bidaf-tf/bi-att-flow
+cd /home/lpal/bi-att-flow
 
 ## Change lines below if you want to run it differently
 
@@ -38,4 +39,4 @@ python -m basic.cli --mode train --noload --debug  --batch_size 60 --device /gpu
 # python -m basic.cli --mode train --noload --batch_size 60 --num_steps 10000 -device /gpu:0 --device_type gpu --num_gpus 1
 
 ## Testing on dataset
-# python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 1
+python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 1
