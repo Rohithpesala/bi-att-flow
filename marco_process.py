@@ -3,13 +3,13 @@ import sys
 import pandas as pd
 import pickle
 from rouge import Rouge 
-
+import os
 rouge = Rouge()
 
 for i in range(len(sys.argv)-1):
 	fname = sys.argv[i+1]
 	nf = []
-	with open(fname) as f:
+	with open(os.getcwd()+fname) as f:
 		for l in f:
 			nl = l.replace("\n",",")
 			nf.append(nl)
@@ -78,5 +78,5 @@ for i in range(len(sys.argv)-1):
 		# if i>100:
 		# 	break
 	nf = {"data": data, "version": 1.0}
-	json.dump(nf, open("processed_"+fname, 'w'))
+	json.dump(nf, open(os.getcwd()+fname, 'w'))
 
