@@ -61,6 +61,10 @@ def prepro(args):
         prepro_each(args, 'train', out_name='train')
         prepro_each(args, 'dev', out_name='dev')
         prepro_each(args, 'dev', out_name='test')
+    elif args.mode == 'full_test':
+        prepro_each(args, 'train', out_name='train')
+        prepro_each(args, 'dev', out_name='dev')
+        prepro_each(args, 'test', out_name='test')
     elif args.mode == 'all':
         create_all(args)
         prepro_each(args, 'dev', 0.0, 0.0, out_name='dev')
