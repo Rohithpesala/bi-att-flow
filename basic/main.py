@@ -34,7 +34,7 @@ def set_dirs(config):
     assert config.load or config.mode == 'train', "config.load must be True if not training"
     if not config.load and os.path.exists(config.out_dir):
         shutil.rmtree(config.out_dir)
-
+    print(config.out_dir, config.out_base_dir)
     config.save_dir = os.path.join(config.out_dir, "save")
     config.log_dir = os.path.join(config.out_dir, "log")
     config.eval_dir = os.path.join(config.out_dir, "eval")

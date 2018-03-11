@@ -1,12 +1,11 @@
 #!/bin/bash
 #
-#SBATCH --job-name=multi-opt-gpu-newsqa-bidaf-tf
+#SBATCH --job-name=10j-1gpu-joint-newsqa-bidaf-tf
 #SBATCH --partition=m40-long
-#SBATCH --output=2-gpu-newsqa-bidaf-m40l-%A.out
-#SBATCH --error=2-gpu-newsqa-bidaf-m40l-%A.err
-#SBATCH --mem=60000
-#SBATCH --gres=gpu:2
-
+#SBATCH --output=10n-test-j-j-nqa-sq-bidaf-txl-1-%A.out
+#SBATCH --error=10n-test-j-j-nqa-sq-bidaf-txl-1-%A.err
+#SBATCH --gres=gpu:1
+#SBATCH --mem=80000
 # Log what we're running and where.
 echo $SLURM_JOBID - `hostname` >> ~/slurm-jobs.txt
 
@@ -26,16 +25,17 @@ pip install --user tqdm nltk jinja2
 # USE TF R0.11 ONLY ## TF SUCKS
 pip install --user --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.11.0-cp35-cp35m-linux_x86_64.whl
 
+
 ## Change this line so that it points to your bidaf gitbuh folder
-cd /home/usaxena/work/s18/696/bidaf
+cd /home/usaxena/work/s18/696/bidaf/
 
 ## Change lines below if you want to run it differently
 
 ## Debugging a small model - use this to test if any changes in your code 
-#python -m basic.cli --mode train --noload --debug  --batch_size 30 --device /gpu:0 --device_type gpu --num_gpus 2 --len_opt --cluster
+#python -m basic.cli --mode train --noload --debug  --batch_size 60 --device /gpu:0 --device_type gpu --num_gpus 1
 
 ## Train Full dataset
-python -m basic.cli --mode train --noload --batch_size 30 --out_base_dir "out/basic_newsqa/" --num_steps 10000 -device /gpu:0 --device_type gpu --num_gpus 2 --len_opt --cluster
+# python -m basic.cli --mode train --noload --out_base_dir "out/nqa-sq-10/" --joint_ratio 0.1 --batch_size 60 --num_steps 20000 -device /gpu:0 --device_type gpu --num_gpus 1
 
 ## Testing on dataset
-# python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 2 --len_opt --cluster
+python -m basic.cli --data_dir "data/newsqa/" --out_base_dir "out/nqa-sq-10/" --device /gpu:0 --device_type gpu --num_gpus 1

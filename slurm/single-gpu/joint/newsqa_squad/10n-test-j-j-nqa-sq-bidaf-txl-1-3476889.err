@@ -1,0 +1,49 @@
+Exception:
+Traceback (most recent call last):
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/basecommand.py", line 215, in main
+    status = self.run(options, args)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/commands/uninstall.py", line 76, in run
+    requirement_set.uninstall(auto_confirm=options.yes)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/req/req_set.py", line 346, in uninstall
+    req.uninstall(auto_confirm=auto_confirm)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/req/req_install.py", line 754, in uninstall
+    paths_to_remove.remove(auto_confirm)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/req/req_uninstall.py", line 103, in remove
+    response = ask('Proceed (y/n)? ', ('y', 'n'))
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/site-packages/pip/utils/__init__.py", line 158, in ask
+    response = input(message)
+EOFError: EOF when reading a line
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 0 with properties: 
+name: Tesla M40 24GB
+major: 5 minor: 2 memoryClockRate (GHz) 1.112
+pciBusID 0000:02:00.0
+Total memory: 22.43GiB
+Free memory: 22.32GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:972] DMA: 0 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla M40 24GB, pci bus id: 0000:02:00.0)
+Traceback (most recent call last):
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/runpy.py", line 184, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/cm/shared/apps/python/3.5.2/lib/python3.5/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/usaxena/work/s18/696/bidaf/basic/cli.py", line 111, in <module>
+    tf.app.run()
+  File "/home/usaxena/.local/lib/python3.5/site-packages/tensorflow/python/platform/app.py", line 30, in run
+    sys.exit(main(sys.argv[:1] + flags_passthrough))
+  File "/home/usaxena/work/s18/696/bidaf/basic/cli.py", line 108, in main
+    m(config)
+  File "/home/usaxena/work/s18/696/bidaf/basic/main.py", line 25, in main
+    _test(config)
+  File "/home/usaxena/work/s18/696/bidaf/basic/main.py", line 150, in _test
+    graph_handler.initialize(sess)
+  File "/home/usaxena/work/s18/696/bidaf/basic/graph_handler.py", line 25, in initialize
+    self._load(sess)
+  File "/home/usaxena/work/s18/696/bidaf/basic/graph_handler.py", line 51, in _load
+    assert checkpoint is not None, "cannot load checkpoint at {}".format(save_dir)
+AssertionError: cannot load checkpoint at out/nqa-sq-10/basic/00/save
