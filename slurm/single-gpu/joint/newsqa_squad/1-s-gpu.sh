@@ -2,8 +2,8 @@
 #
 #SBATCH --job-name=1-1gpu-joint-newsqa-bidaf-tf
 #SBATCH --partition=m40-long
-#SBATCH --output=1s-test-j-nqa-sq-bidaf-txl-1-%A.out
-#SBATCH --error=1s-test-j-nqa-sq-bidaf-txl-1-%A.err
+#SBATCH --output=1-nqa-sq-bidaf-txl-1-%A.out
+#SBATCH --error=1-nqa-sq-bidaf-txl-1-%A.err
 #SBATCH --gres=gpu:1
 #SBATCH --mem=80000
 # Log what we're running and where.
@@ -35,7 +35,7 @@ cd /home/usaxena/work/s18/696/bidaf/
 #python -m basic.cli --mode train --noload --debug  --batch_size 60 --device /gpu:0 --device_type gpu --num_gpus 1
 
 ## Train Full dataset
-# python -m basic.cli --mode train --noload --out_base_dir "out/nqa-sq-1/" --joint_ratio 0.01 --batch_size 60 --num_steps 20000 -device /gpu:0 --device_type gpu --num_gpus 1
+python -m basic.cli --mode train --noload --out_base_dir "out/nqa-sq-1/" --joint_ratio 0.01 --batch_size 60 --num_steps 20000 -device /gpu:0 --device_type gpu --num_gpus 1
 
 ## Testing on dataset
 python -m basic.cli --data_dir "data/squad/" --out_base_dir "out/nqa-sq-1/" --device /gpu:0 --device_type gpu --num_gpus 1

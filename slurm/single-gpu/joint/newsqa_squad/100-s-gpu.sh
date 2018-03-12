@@ -2,8 +2,8 @@
 #
 #SBATCH --job-name=100j-1gpu-joint-newsqa-bidaf-tf
 #SBATCH --partition=m40-long
-#SBATCH --output=100s-test-j-nqa-sq-bidaf-txl-1-%A.out
-#SBATCH --error=100s-test-j-nqa-sq-bidaf-txl-1-%A.err
+#SBATCH --output=100-nqa-sq-bidaf-txl-1-%A.out
+#SBATCH --error=100-nqa-sq-bidaf-txl-1-%A.err
 #SBATCH --gres=gpu:1
 #SBATCH --mem=80000
 # Log what we're running and where.
