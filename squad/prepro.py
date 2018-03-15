@@ -146,10 +146,14 @@ def prepro_each(args, data_type, start_ratio=0.0, stop_ratio=1.0, out_name="defa
         for pi, para in enumerate(article['paragraphs']):
             # wordss
             context = para['context']
+            # print(context)
             context = context.replace("''", '" ')
             context = context.replace("``", '" ')
+            print(context)
             xi = list(map(word_tokenize, sent_tokenize(context)))
+            # print(xi)
             xi = [process_tokens(tokens) for tokens in xi]  # process tokens
+            # print(xi)
             # given xi, add chars
             cxi = [[list(xijk) for xijk in xij] for xij in xi]
             xp.append(xi)
@@ -173,23 +177,31 @@ def prepro_each(args, data_type, start_ratio=0.0, stop_ratio=1.0, out_name="defa
                 yi = []
                 cyi = []
                 answers = []
+                print(qa['id'])
                 for answer in qa['answers']:
                     answer_text = answer['text']
                     answers.append(answer_text)
                     answer_start = answer['answer_start']
                     answer_stop = answer_start + len(answer_text)
                     # TODO : put some function that gives word_start, word_stop here
+                    # print answer_start,answer_stop
+                    print(context[answer_start:answer_stop])
                     yi0, yi1 = get_word_span(context, xi, answer_start, answer_stop)
+                    # print yi0,yi1
+                    print(answer_text)
                     # yi0 = answer['answer_word_start'] or [0, 0]
                     # yi1 = answer['answer_word_stop'] or [0, 1]
                     assert len(xi[yi0[0]]) > yi0[1]
                     assert len(xi[yi1[0]]) >= yi1[1]
                     w0 = xi[yi0[0]][yi0[1]]
                     w1 = xi[yi1[0]][yi1[1]-1]
+                    print(w0,w1)
                     i0 = get_word_idx(context, xi, yi0)
                     i1 = get_word_idx(context, xi, (yi1[0], yi1[1]-1))
                     cyi0 = answer_start - i0
                     cyi1 = answer_stop - i1 - 1
+                    print(len(answer_text))
+                    print(cyi0,cyi1)
                     # print(answer_text, w0[cyi0:], w1[:cyi1+1])
                     assert answer_text[0] == w0[cyi0], (answer_text, w0, cyi0)
                     assert answer_text[-1] == w1[cyi1]
