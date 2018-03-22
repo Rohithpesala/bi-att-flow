@@ -10,6 +10,7 @@ flags = tf.app.flags
 flags.DEFINE_string("model_name", "basic", "Model name [basic]")
 flags.DEFINE_string("data_dir", "data/squad", "Data dir [data/squad]")
 flags.DEFINE_string("target_data_dir", None , "Target Data dir [data/newsqa]")
+flags.DEFINE_string("target_sampling_ratio", 0.1 , "Target Sampling ratio [0.1]")
 flags.DEFINE_string("run_id", "0", "Run ID [0]")
 flags.DEFINE_string("out_base_dir", "out", "out base dir [out]")
 flags.DEFINE_string("forward_name", "single", "Forward name [single]")

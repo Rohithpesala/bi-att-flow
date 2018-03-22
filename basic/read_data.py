@@ -174,13 +174,21 @@ def read_data(config, data_type, ref, data_filter=None):
             target_shared = json.load(fh)
         for key in data.keys():
             temp = len(shared["p"])
-            # temp2 = len(data["q"])
+            temp2 = len(data["q"])
+            temp3 = len(target_data["q"])
             if key.startswith('*'):
                 counter_temp = 0
                 for ar_id in range(len(target_data[key])):
                     target_data[key][ar_id][0] += temp
-                # print (key,temp,temp2)
-            data[key].extend(target_data[key])
+            # print (key,temp,temp2,temp3)
+            multiplier = 1
+            if data_type == 'train':
+                srt = float(config.target_sampling_ratio)
+                print(type(srt))
+                multiplier = int((1.0*temp2/temp3)*(srt/(1-srt)))
+                multiplier = max(1,multiplier)
+            data[key]+=multiplier*(target_data[key])
+            # break
         for key in shared.keys():
             print(type(shared[key]),key)
             if isinstance(shared[key],list):
