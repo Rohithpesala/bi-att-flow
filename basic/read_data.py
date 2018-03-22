@@ -105,6 +105,8 @@ class DataSet(object):
                 if key.startswith('*'):
                     assert self.shared is not None
                     shared_key = key[1:]
+                    # for each_x in val:
+                    #     print (each_x)
                     shared_batch_data[shared_key] = [index(self.shared[shared_key], each) for each in val]
             batch_data.update(shared_batch_data)
 
@@ -162,6 +164,33 @@ def read_data(config, data_type, ref, data_filter=None):
         data = json.load(fh)
     with open(shared_path, 'r') as fh:
         shared = json.load(fh)
+    if config.target_data_dir:
+        # print(config.target_data_dir)
+        target_data_path = os.path.join(config.target_data_dir, "data_{}.json".format(data_type))
+        target_shared_path = os.path.join(config.target_data_dir, "shared_{}.json".format(data_type))
+        with open(target_data_path, 'r') as fh:
+            target_data = json.load(fh)
+        with open(target_shared_path, 'r') as fh:
+            target_shared = json.load(fh)
+        for key in data.keys():
+            temp = len(shared["p"])
+            # temp2 = len(data["q"])
+            if key.startswith('*'):
+                counter_temp = 0
+                for ar_id in range(len(target_data[key])):
+                    target_data[key][ar_id][0] += temp
+                # print (key,temp,temp2)
+            data[key].extend(target_data[key])
+        for key in shared.keys():
+            print(type(shared[key]),key)
+            if isinstance(shared[key],list):
+                shared[key].extend(target_shared[key])
+            else:
+                # for key2 in shared[key].keys():
+                    # print(key2,shared[key][key2])
+                shared[key].update(target_shared[key])
+                    # break
+                # break
 
     num_examples = len(next(iter(data.values())))
     if data_filter is None:

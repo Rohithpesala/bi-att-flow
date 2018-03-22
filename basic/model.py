@@ -72,10 +72,14 @@ class Model(object):
             config.batch_size, config.max_num_sents, config.max_sent_size, \
             config.max_ques_size, config.word_vocab_size, config.char_vocab_size, config.hidden_size, \
             config.max_word_size
+        # print(self.x)
+        # print (tf.shape(self.x))
         JX = tf.shape(self.x)[2]
         JQ = tf.shape(self.q)[1]
         M = tf.shape(self.x)[1]
         dc, dw, dco = config.char_emb_size, config.word_emb_size, config.char_out_size
+        # print(N, M, JX, JQ, VW, VC, d, W)
+        # return
 
         with tf.variable_scope("emb"):
             if config.use_char_emb:
@@ -136,6 +140,9 @@ class Model(object):
         d_cell = SwitchableDropoutWrapper(cell, self.is_train, input_keep_prob=config.input_keep_prob)
         x_len = tf.reduce_sum(tf.cast(self.x_mask, 'int32'), 2)  # [N, M]
         q_len = tf.reduce_sum(tf.cast(self.q_mask, 'int32'), 1)  # [N]
+
+        with tf.variable_scope("discriminator"):
+            pass
 
         with tf.variable_scope("prepro"):
             (fw_u, bw_u), ((_, fw_u_f), (_, bw_u_f)) = bidirectional_dynamic_rnn(d_cell, d_cell, qq, q_len, dtype='float', scope='u1')  # [N, J, d], [N, d]
