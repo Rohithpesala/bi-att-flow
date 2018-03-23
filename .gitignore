@@ -7,3 +7,5 @@ out/basic/00/log
 Experiments/*
 data/*
 out/*
+*.pyc
+my/tensorflow/__pycache__/*
