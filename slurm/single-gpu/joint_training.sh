@@ -3,8 +3,8 @@
 #SBATCH --mem=20000
 #SBATCH --job-name=1-gpu-bidaf-tf
 #SBATCH --partition=m40-long
-#SBATCH --output=lr-100-0.7.out
-#SBATCH --error=lr-100-0.7.e
+#SBATCH --output=joint-nqa-001-0.1.out
+#SBATCH --error=joint-nqa-001-0.1.err
 #SBATCH --gres=gpu:1
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ruppaal@cs.umass.edu
@@ -38,8 +38,8 @@ cd ../..
 # python -m basic.cli --mode train --noload --debug  --batch_size 60 --device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster --data_dir "data/newsqadata"  --out_base_dir "out/newsqatest"
 
 ## Train Full dataset
-python -m basic.cli --mode train --noload --batch_size 60 --num_steps 20000 -device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster --target_data_dir "data/newsqa_debug_001" --out_base_dir "out/joint-nqa-001-0.3" --target_sampling_ratio 0.3
+python -m basic.cli --mode train --noload --num_steps 20000 -device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster --target_data_dir "data/newsqa_debug_001" --out_base_dir "out/joint-nqa-001-0.1" --target_sampling_ratio 0.1
 
 ## Testing on dataset
-python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster  --target_data_dir "data/newsqa_debug_001" --out_base_dir "out/joint-nqa-001-0.3" --target_sampling_ratio 0.3
+python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 1 --len_opt --cluster  --target_data_dir "data/newsqa_debug_001" --out_base_dir "out/joint-nqa-001-0.1" --target_sampling_ratio 0.1
 
