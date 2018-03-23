@@ -21,7 +21,7 @@ module load cuda80/profiler/8.0.44
 module load cuda80/toolkit/8.0.44
 
 # Remove any previous versions of Tensorflow 
-# pip uninstal
+# pip uninstall tensorflow
 
 ## Dependencies
 # pip install --user tqdm nltk jinja2
