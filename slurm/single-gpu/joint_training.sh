@@ -3,8 +3,8 @@
 #SBATCH --mem=20000
 #SBATCH --job-name=1-gpu-bidaf-tf
 #SBATCH --partition=m40-long
-#SBATCH --output=joint-nqa-001-0.3.out
-#SBATCH --error=joint-nqa-001-0.3.err
+#SBATCH --output=lr-100-0.7.out
+#SBATCH --error=lr-100-0.7.e
 #SBATCH --gres=gpu:1
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ruppaal@cs.umass.edu
