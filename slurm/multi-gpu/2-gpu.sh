@@ -1,6 +1,10 @@
 #!/bin/bash
 #
+<<<<<<< HEAD
 #SBATCH --mem=40000
+=======
+#SBATCH --mem=50000
+>>>>>>> 573acf80771a49b0bd52e1d72ecee473f3759f41
 #SBATCH --job-name=multi-opt-gpu-bidaf-tf
 #SBATCH --partition=m40-long
 #SBATCH --output=multi-gpu-bidaf-m40s-%A.out
@@ -38,7 +42,14 @@ cd ../..
 # python -m basic.cli --mode train --debug --noload --batch_size 30 --device /gpu:0 --device_type gpu --num_gpus 4 --len_opt --cluster --data_dir "data/marco"
 
 ## Train Full dataset
+<<<<<<< HEAD
 python -m basic.cli --mode train --noload --batch_size 30 --num_steps 30000 -device /gpu:0 --device_type gpu --num_gpus 2 --len_opt --cluster --data_dir "data/marco" --save_period 100
 
 ## Testing on dataset
 python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 4 --len_opt --cluster
+=======
+python -m basic.cli --mode train --noload --batch_size 30 --num_steps 30000 -device /gpu:0 --device_type gpu --num_gpus 2 --len_opt --cluster --data_dir "data/marco"
+
+## Testing on dataset
+python -m basic.cli -device /gpu:0 --device_type gpu --num_gpus 2 --len_opt --cluster
+>>>>>>> 573acf80771a49b0bd52e1d72ecee473f3759f41
