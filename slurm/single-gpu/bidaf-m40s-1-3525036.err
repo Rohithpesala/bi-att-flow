@@ -1,64 +1,0 @@
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 0 with properties: 
-name: Tesla M40 24GB
-major: 5 minor: 2 memoryClockRate (GHz) 1.112
-pciBusID 0000:82:00.0
-Total memory: 22.43GiB
-Free memory: 22.32GiB
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:972] DMA: 0 
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y 
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla M40 24GB, pci bus id: 0000:82:00.0)
-  0%|          | 0/2 [00:00<?, ?it/s]I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 102786 get requests, put_count=33393 evicted_count=1000 eviction_rate=0.0299464 and unsatisfied allocation rate=0.685823
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:257] Raising pool_size_limit_ from 100 to 110
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 12113 get requests, put_count=22123 evicted_count=10000 eviction_rate=0.452018 and unsatisfied allocation rate=0
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 22973 get requests, put_count=42982 evicted_count=20000 eviction_rate=0.465311 and unsatisfied allocation rate=4.35294e-05
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 34977 get requests, put_count=64986 evicted_count=30000 eviction_rate=0.461638 and unsatisfied allocation rate=2.85902e-05
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 45929 get requests, put_count=85937 evicted_count=40000 eviction_rate=0.465457 and unsatisfied allocation rate=4.35455e-05
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 57929 get requests, put_count=107937 evicted_count=50000 eviction_rate=0.463233 and unsatisfied allocation rate=3.4525e-05
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 68776 get requests, put_count=128783 evicted_count=60000 eviction_rate=0.4659 and unsatisfied allocation rate=4.36199e-05
-
-  0%|          | 0/2 [00:00<?, ?it/s][A
- 50%|█████     | 1/2 [00:02<00:02,  2.02s/it][A
-100%|██████████| 2/2 [00:04<00:00,  2.02s/it][A
-[A
-  0%|          | 0/2 [00:00<?, ?it/s]I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 140215 get requests, put_count=209546 evicted_count=70000 eviction_rate=0.334056 and unsatisfied allocation rate=0.00484256
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:257] Raising pool_size_limit_ from 110 to 121
-[A
- 50%|█████     | 1/2 [00:01<00:01,  1.90s/it][A
-100%|██████████| 2/2 [00:03<00:00,  1.93s/it][A
-[A 50%|█████     | 1/2 [00:19<00:19, 19.81s/it]I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 10972 get requests, put_count=19984 evicted_count=9000 eviction_rate=0.45036 and unsatisfied allocation rate=0
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 21878 get requests, put_count=40889 evicted_count=19000 eviction_rate=0.464673 and unsatisfied allocation rate=4.5708e-05
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 33878 get requests, put_count=62889 evicted_count=29000 eviction_rate=0.46113 and unsatisfied allocation rate=2.95177e-05
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 44834 get requests, put_count=83844 evicted_count=39000 eviction_rate=0.46515 and unsatisfied allocation rate=4.4609e-05
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 56834 get requests, put_count=105844 evicted_count=49000 eviction_rate=0.462945 and unsatisfied allocation rate=3.51902e-05
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 69791 get requests, put_count=128800 evicted_count=59000 eviction_rate=0.458075 and unsatisfied allocation rate=4.29855e-05
-
-  0%|          | 0/2 [00:00<?, ?it/s][A
- 50%|█████     | 1/2 [00:01<00:01,  2.00s/it][A
-100%|██████████| 2/2 [00:03<00:00,  2.00s/it][A
-[A
-  0%|          | 0/2 [00:00<?, ?it/s][A
- 50%|█████     | 1/2 [00:02<00:02,  2.00s/it][A
-100%|██████████| 2/2 [00:04<00:00,  2.02s/it][A
-[A100%|██████████| 2/2 [00:36<00:00, 18.85s/it]
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally
-I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:951] Found device 0 with properties: 
-name: Tesla M40 24GB
-major: 5 minor: 2 memoryClockRate (GHz) 1.112
-pciBusID 0000:82:00.0
-Total memory: 22.43GiB
-Free memory: 22.32GiB
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:972] DMA: 0 
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] 0:   Y 
-I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla M40 24GB, pci bus id: 0000:82:00.0)
-  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [00:07<00:54,  7.83s/it] 25%|██▌       | 2/8 [00:15<00:46,  7.70s/it] 38%|███▊      | 3/8 [00:20<00:35,  7.08s/it] 50%|█████     | 4/8 [00:27<00:27,  6.94s/it]I tensorflow/core/common_runtime/gpu/pool_allocator.cc:245] PoolAllocator: After 380232 get requests, put_count=380132 evicted_count=1000 eviction_rate=0.00263067 and unsatisfied allocation rate=0.00315597
-I tensorflow/core/common_runtime/gpu/pool_allocator.cc:257] Raising pool_size_limit_ from 100 to 110
- 62%|██████▎   | 5/8 [00:32<00:19,  6.35s/it] 75%|███████▌  | 6/8 [00:41<00:14,  7.11s/it] 88%|████████▊ | 7/8 [00:49<00:07,  7.51s/it]100%|██████████| 8/8 [00:56<00:00,  7.35s/it]
