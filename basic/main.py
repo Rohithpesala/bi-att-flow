@@ -91,7 +91,6 @@ def _train(config):
 
     # Begin training
     num_steps = config.num_steps or int(math.ceil(train_data.num_examples / (config.batch_size * config.num_gpus))) * config.num_epochs
-    print("Num Steps = ",num_steps, "Num Examples = ",train_data.num_examples)
     global_step = 0
     for batches in tqdm(train_data.get_multi_batches(config.batch_size, config.num_gpus,
                                                      num_steps=num_steps, shuffle=True, cluster=config.cluster), total=num_steps):
@@ -107,6 +106,8 @@ def _train(config):
 
         if not config.eval:
             continue
+        
+        best_acc = 0  ##
         # Occasional evaluation
         if global_step % config.eval_period == 0:
             num_steps = math.ceil(dev_data.num_examples / (config.batch_size * config.num_gpus))
@@ -118,6 +119,18 @@ def _train(config):
             graph_handler.add_summaries(e_train.summaries, global_step)
             e_dev = evaluator.get_evaluation_from_batches(
                 sess, tqdm(dev_data.get_multi_batches(config.batch_size, config.num_gpus, num_steps=num_steps), total=num_steps))
+      
+            # Save best model as "best-model"
+            s = str(e_dev).find("accuracy") + 9
+            e = s + 6
+            acc = float(str(e_dev)[s:e])
+            if acc > best_acc:
+                best_acc = acc
+                saver = tf.train.Saver(max_to_keep=config.max_to_keep)
+                best_model_path = os.path.join(config.save_dir, 'best-model')
+                saver.save(sess, best_model_path)
+                print ('Accuracy Increase to: ', best_acc, ' Saved best model: ', best_model_path)
+
             graph_handler.add_summaries(e_dev.summaries, global_step)
 
             if config.dump_eval:
