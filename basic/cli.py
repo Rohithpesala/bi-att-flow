@@ -17,7 +17,7 @@ flags.DEFINE_string("answer_path", "", "Answer path []")
 flags.DEFINE_string("eval_path", "", "Eval path []")
 flags.DEFINE_string("load_path", "", "Load path []")
 flags.DEFINE_string("shared_path", "", "Shared path []")
-flags.DEFINE_string("joint_ratio", 0.01, "Joint Training Ratio - of target domain")
+flags.DEFINE_string("joint_ratio", 0.0, "Joint Training Ratio - of target domain")
 
 # Device placement
 flags.DEFINE_string("device", "/cpu:0", "default device for summing gradients. [/cpu:0]")
@@ -69,7 +69,7 @@ flags.DEFINE_integer("max_to_keep", 20, "Max recent saves to keep [20]")
 flags.DEFINE_bool("dump_eval", True, "dump eval? [True]")
 flags.DEFINE_bool("dump_answer", True, "dump answer? [True]")
 flags.DEFINE_bool("vis", False, "output visualization numbers? [False]")
-flags.DEFINE_bool("dump_pickle", True, "Dump pickle instead of json? [True]")
+flags.DEFINE_bool("dump_pickle", False, "Dump pickle instead of json? [True]")
 flags.DEFINE_float("decay", 0.9, "Exponential moving average decay for logging values [0.9]")
 
 # Thresholds for speed and less memory usage

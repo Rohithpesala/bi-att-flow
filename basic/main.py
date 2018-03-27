@@ -128,7 +128,7 @@ def _train(config):
 
 
 def _test(config):
-    test_data = read_data(config, 'test', True)
+    test_data = read_data(config, 'train', True)
     update_config(config, [test_data])
 
     _config_debug(config)

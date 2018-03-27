@@ -78,6 +78,7 @@ class Model(object):
         dc, dw, dco = config.char_emb_size, config.word_emb_size, config.char_out_size
 
         with tf.variable_scope("emb"):
+            # Char emb start
             if config.use_char_emb:
                 with tf.variable_scope("emb_var"), tf.device("/cpu:0"):
                     char_emb_mat = tf.get_variable("char_emb_mat", shape=[VC, dc], dtype='float')
@@ -88,6 +89,7 @@ class Model(object):
                     Acx = tf.reshape(Acx, [-1, JX, W, dc])
                     Acq = tf.reshape(Acq, [-1, JQ, W, dc])
 
+                    # char cnn's start
                     filter_sizes = list(map(int, config.out_channel_dims.split(',')))
                     heights = list(map(int, config.filter_heights.split(',')))
                     assert sum(filter_sizes) == dco, (filter_sizes, dco)
@@ -100,6 +102,10 @@ class Model(object):
                             qq = multi_conv1d(Acq, filter_sizes, heights, "VALID", self.is_train, config.keep_prob, scope="qq")
                         xx = tf.reshape(xx, [-1, M, JX, dco])
                         qq = tf.reshape(qq, [-1, JQ, dco])
+                    # char cnn's end
+
+            # Char emb end
+            # Word emb start
 
             if config.use_word_emb:
                 with tf.variable_scope("emb_var"), tf.device("/cpu:0"):
@@ -122,6 +128,8 @@ class Model(object):
                     xx = Ax
                     qq = Aq
 
+            # Word emb end
+
         # highway network
         if config.highway:
             with tf.variable_scope("highway"):
@@ -137,6 +145,7 @@ class Model(object):
         x_len = tf.reduce_sum(tf.cast(self.x_mask, 'int32'), 2)  # [N, M]
         q_len = tf.reduce_sum(tf.cast(self.q_mask, 'int32'), 1)  # [N]
 
+        # Contextual Embedding Start
         with tf.variable_scope("prepro"):
             (fw_u, bw_u), ((_, fw_u_f), (_, bw_u_f)) = bidirectional_dynamic_rnn(d_cell, d_cell, qq, q_len, dtype='float', scope='u1')  # [N, J, d], [N, d]
             u = tf.concat(2, [fw_u, bw_u])
@@ -150,7 +159,9 @@ class Model(object):
             self.tensor_dict['u'] = u
             self.tensor_dict['h'] = h
 
+        # Contextual Embedding end
         with tf.variable_scope("main"):
+            # Attention Layer start
             if config.dynamic_att:
                 p0 = h
                 u = tf.reshape(tf.tile(tf.expand_dims(u, 1), [1, M, 1, 1]), [N * M, JQ, 2 * d])
@@ -160,12 +171,16 @@ class Model(object):
             else:
                 p0 = attention_layer(config, self.is_train, h, u, h_mask=self.x_mask, u_mask=self.q_mask, scope="p0", tensor_dict=self.tensor_dict)
                 first_cell = d_cell
+            # Attention Layer end
 
+            # Modeling layer start
             (fw_g0, bw_g0), _ = bidirectional_dynamic_rnn(first_cell, first_cell, p0, x_len, dtype='float', scope='g0')  # [N, M, JX, 2d]
             g0 = tf.concat(3, [fw_g0, bw_g0])
             (fw_g1, bw_g1), _ = bidirectional_dynamic_rnn(first_cell, first_cell, g0, x_len, dtype='float', scope='g1')  # [N, M, JX, 2d]
             g1 = tf.concat(3, [fw_g1, bw_g1])
 
+            # Modeling layer end
+            # Output Layer start
             logits = get_logits([g1, p0], d, True, wd=config.wd, input_keep_prob=config.input_keep_prob,
                                 mask=self.x_mask, is_train=self.is_train, func=config.answer_func, scope='logits1')
             a1i = softsel(tf.reshape(g1, [N, M * JX, 2 * d]), tf.reshape(logits, [N, M * JX]))
@@ -178,7 +193,9 @@ class Model(object):
                                  mask=self.x_mask,
                                  is_train=self.is_train, func=config.answer_func, scope='logits2')
 
+            # Output layer end
             flat_logits = tf.reshape(logits, [-1, M * JX])
+            # flat_logits = tf.Print(flat_logits, [tf.shape(flat_logits), flat_logits], message="FLAT LOGITS")
             flat_yp = tf.nn.softmax(flat_logits)  # [-1, M*JX]
             yp = tf.reshape(flat_yp, [-1, M, JX])
             flat_logits2 = tf.reshape(logits2, [-1, M * JX])
@@ -191,6 +208,7 @@ class Model(object):
             self.logits = flat_logits
             self.logits2 = flat_logits2
             self.yp = yp
+            # print(self.yp)
             self.yp2 = yp2
 
     def _build_loss(self):
@@ -199,10 +217,14 @@ class Model(object):
         M = tf.shape(self.x)[1]
         JQ = tf.shape(self.q)[1]
         loss_mask = tf.reduce_max(tf.cast(self.q_mask, 'float'), 1)
+        # self.logits = tf.Print(self.logits, [tf.shape(self.logits), self.logits])
+        # print(type(self.logits.eval()), self.logits.eval())
         losses = tf.nn.softmax_cross_entropy_with_logits(
             self.logits, tf.cast(tf.reshape(self.y, [-1, M * JX]), 'float'))
         ce_loss = tf.reduce_mean(loss_mask * losses)
         tf.add_to_collection('losses', ce_loss)
+        # self.logits2 = tf.Print(self.logits2, [tf.shape(self.logits2), self.logits2])
+        # print(type(self.logits2.eval()), self.logits2.eval())
         ce_loss2 = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
             self.logits2, tf.cast(tf.reshape(self.y2, [-1, M * JX]), 'float')))
         tf.add_to_collection("losses", ce_loss2)
